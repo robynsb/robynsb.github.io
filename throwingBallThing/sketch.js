@@ -1,8 +1,10 @@
 let width = 1000;
 let height = 1000;
 function setup() {
-  createCanvas(width, height);
-  
+	createCanvas(width, height);
+	let c = color(255, 204, 0); // Define color 'c'
+	fill(c); // Use color variable 'c' as fill color
+	noStroke();
 }
 
 let x = 100;
@@ -15,7 +17,7 @@ let prev_x = x;
 let prev_y = y;
 
 function draw() {
-	background(255);
+	background(0);
 	if(x < 0 || x > width) {
 		v_x = -v_x;
 	}
