@@ -1,0 +1,25 @@
+body {
+    text-align: center;
+    background-color: #fefffc;
+    font-size: 13pt;
+}
+
+p {
+    line-height: 1.5;
+}
+
+a {
+    color: #fc870a;
+}
+
+.italics {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.silly-web-dev {
+    line-height: 1;
+}
