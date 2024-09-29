@@ -29,5 +29,5 @@ function advanceCar2() {
     document.getElementById('second-road').textContent = createRoad(car2Pos, "🐢");
 }
 
-setInterval(advanceCar1, 731);
-setInterval(advanceCar2, 500);
+setInterval(advanceCar1, 1431);
+setInterval(advanceCar2, 1000);
