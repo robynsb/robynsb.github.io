@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Translucency Matcher</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+
+    <!-- Android Chrome -->
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon_io/android-chrome-512x512.png">
+
+    <!-- Apple Touch Icon (iOS) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileImage" content="favicon_io/mstile-144x144.png">
+
+    <!-- Safari pinned tab -->
+    <link rel="mask-icon" href="favicon_io/safari-pinned-tab.svg" color="#5bbad5">
+
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+</head>
+<body>
+
+    <h1>Subsurface scattering psychovisual experiment</h1>
+    <p>
+        Hii, I'm Robin! For the course Perception in Visual Computing I'm doing a study on
+        how we perceive <i>translucency</i>.
+    </p>
+    <p>    
+        Objects like orange slices, cheese, and human skin
+        are slightly permeable to light. Through a process called subsurface scattering,
+        these objects "glow" under the correct conditions. Can you see how the front face of the cheese
+        "glows" slightly because it allows light to pass through?
+    </p>
+    <img src="Comte_(cheese).jpg" alt="Picture of cheese">
+    <p>
+        I'm evaluating various rendering methods to produce images 
+        of objects that give the illusion of this property.
+    </p>
+
+    <h2>So, what do you have to do?</h2>
+    <p>
+        There is a reference image on the left, and a test image on the right.
+        The slider under the two images adjusts the material type of the test object.
+        The material lets more light pass through it when the slider is moved to
+        the right and less when it is move to the left.
+    </p> 
+    <p class="p-accented">
+        It is your task to match the material type of the test
+        image to the material type of the reference image as close as possible.
+    </p>
+    <p>
+        Note that illumination conditions of the test and reference differ in some cases.
+        Your task is to match the <b>material type</b>, this means that the
+        two objects with the same material may have different overall brightness.
+        This means that if you feel that some reference object does not let any light
+        pass through it, then move the corresponding slider to the fully left position.
+        Even if this means that the overall brightness of the two images is very different.
+    </p>
+    <p>
+        When you matched all the images, click submit.
+    </p>
+
+    <div class="two-column">
+        <div class="column">
+            <p><b>Reference</b></p>
+        </div>
+        <div class="column">
+            <p><b>Test</b></p>
+        </div>
+    </div>
+
+    <form id="my-form" method="post" action="https://docs.google.com/forms/d/e/1FAIpQLSdLFJVOTlx8wOV7-jcO4231UwE1j8jbf9PlEY2PgeAo3Gifgg/formResponse">
+
+        <input type="hidden" id="timeSpent" name="entry.348101224">
+
+        <div class="slider-container" data-image-dir="../donutslider/">
+            <div class="image-container">
+                <img src="../tutorialstimuli/Donut7.6m.png" alt="Stimulus 1">
+                <img class="testimg" src="" alt="Dragon Slider 2">
+            </div>
+            <input type="range" name="entry.2114654476" class="slider" id="slider-2" min="0" max="0" step="1">
+        </div>
+
+        <div class="slider-container" data-image-dir="../dragonslider/">
+            <div class="image-container">
+                <img src="../tutorialstimuli/Dragon0.5m.png" alt="Stimulus 1">
+                <img class="testimg" src="" alt="Dragon Slider 2">
+            </div>
+            <input type="range" name="entry.2114654476" class="slider" id="slider-2" min="0" max="0" step="1">
+        </div>
+
+        <div class="slider-container" data-image-dir="../donutslider/">
+            <div class="image-container">
+                <img src="../tutorialstimuli/Donut0m.png" alt="Stimulus 1">
+                <img class="testimg" src="" alt="Dragon Slider 2">
+            </div>
+            <input type="range" name="entry.2114654476" class="slider" id="slider-2" min="0" max="0" step="1">
+        </div>
+
+        <!-- <div class="slider-container" data-image-dir="../dargonslider/">
+            <div class="image-container">
+                <img src="../tutorialstimuli/Donut0.6m.png" alt="Stimulus 1">
+                <img class="testimg" src="" alt="Dragon Slider 2">
+            </div>
+            <input type="range" name="entry.2114654476" class="slider" id="slider-2" min="0" max="0" step="1">
+        </div> -->
+
+        <div class="slider-container" data-image-dir="../donutslider/">
+            <div class="image-container">
+                <img src="../stimuli/DonutNLC.png" alt="Stimulus 1">
+                <img class="testimg" src="" alt="Dragon Slider 2">
+            </div>
+            <input type="range" name="entry.2114654476" class="slider" id="slider-2" min="0" max="0" step="1">
+        </div>
+
+        <div class="slider-container" data-image-dir="../dragonslider/">
+            <div class="image-container">
+                <img src="../stimuli/DragonNLC.png" alt="Stimulus 1">
+                <img class="testimg" src="" alt="Dragon Slider 1">
+            </div>
+            <input type="range" name="entry.996671842" class="slider" id="slider-1" min="0" max="0" step="1">
+        </div>
+
+        <div class="slider-container" data-image-dir="../donutslider/">
+            <div class="image-container">
+                <img src="../stimuli/DonutHPCI.png" alt="Stimulus 1">
+                <img class="testimg" src="" alt="Dragon Slider 2">
+            </div>
+            <input type="range" name="entry.2114654476" class="slider" id="slider-2" min="0" max="0" step="1">
+        </div>
+
+        <div class="slider-container" data-image-dir="../dragonslider/">
+            <div class="image-container">
+                <img src="../stimuli/DragonHPCI.png" alt="Stimulus 1">
+                <img class="testimg" src="" alt="Dragon Slider 1">
+            </div>
+            <input type="range" name="entry.996671842" class="slider" id="slider-1" min="0" max="0" step="1">
+        </div>
+
+        <div class="slider-container" data-image-dir="../donutbackgroundslider/">
+            <div class="image-container">
+                <img src="../stimuli/DonutTextured.png" alt="Stimulus 1">
+                <img class="testimg" src="" alt="Background donut slider 1">
+            </div>
+            <input type="range" name="entry.996671842" class="slider" id="slider-1" min="0" max="0" step="1">
+        </div>
+
+        <div class="slider-container" data-image-dir="../textureddragonslider/">
+            <div class="image-container">
+                <img src="../stimuli/DragonTextured.png" alt="Stimulus 1">
+                <img class="testimg" src="" alt="Background donut slider 1">
+            </div>
+            <input type="range" name="entry.996671842" class="slider" id="slider-1" min="0" max="0" step="1">
+        </div>
+
+
+        <!-- You can add more sliders here as needed -->
+        <input type="submit" />
+
+    </form>
+
+    <script src="timer.js"></script>
+    <script src="multidragonslider.js"></script>
+
+</body>
+</html>

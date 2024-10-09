@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+p {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.image-container {
+    margin-top: 20px;
+}
+
+.two-column {
+    display: flex;
+}
+
+.p-accented {
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    font-weight: bold;
+    background-color:#fff1c9;
+}
+
+.column {
+    flex: 1; /* Make both columns take equal width */
+    padding: 10px; /* Add some space inside each column */
+    box-sizing: border-box;
+}
+
+input[type="range"] {
+    width: 50%; /* Ensure the slider inside the container uses full width */
+    height: 8px; /* Height of the slider */
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+}
+
+input[type="submit"] {
+    background-color: #28a745; /* Green background */
+    color: white;               /* White text */
+    padding: 1em 2em;           /* Padding using em for adjustability */
+    font-size: 1.2rem;          /* Use rem for font size (relative to root) */
+    border: none;               /* Remove borders */
+    border-radius: 0.5rem;      /* Rounded corners using rem */
+    cursor: pointer;            /* Pointer cursor on hover */
+    margin-top: 1.5rem;         /* Top margin for spacing */
+    display: inline-block;      /* Keep the button's natural width */
+    margin-bottom: 5rem;
+}
+
+/* Hover state styling */
+input[type="submit"]:hover {
+    background-color: #218838;  /* Darker green on hover */
+}
+
+#slider {
+    width: 75vw;
+    margin: 20px auto;
+    display: block;
+}
+
+img {
+    max-width: 45%;
+    height: auto;
+    max-height: 70vh;
+    border: 2px solid #ccc;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+}
