@@ -8,6 +8,17 @@ const imageSets = {
     // Add more directories and their image sets here as needed
 };
 
+// Function to preload images
+function preloadImages(imageDir, imageSet) {
+    const preloadedImages = [];
+    imageSet.forEach((filename) => {
+        const img = new Image();
+        img.src = imageDir + filename;
+        preloadedImages.push(img);
+    });
+    return preloadedImages; // Return array of preloaded images
+}
+
 // Function to handle image preloading and slider updates
 function setupSlider(sliderContainer) {
     const imageDir = sliderContainer.getAttribute('data-image-dir');  // Get image directory from data attribute
@@ -19,7 +30,7 @@ function setupSlider(sliderContainer) {
         const imageSet = imageSets[imageDir];  // Get the image set for this directory
 
         // Preload images
-        const preloadedImages = imageSet.map(filename => imageDir + filename);
+        const preloadedImages = preloadImages(imageDir, imageSet);
 
         // Set slider max value based on the number of images
         slider.max = preloadedImages.length - 1;
@@ -27,14 +38,14 @@ function setupSlider(sliderContainer) {
         // Function to update the displayed image based on slider value
         function updateImage() {
             const imgIndex = slider.value;
-            imageElement.src = preloadedImages[imgIndex];
+            imageElement.src = preloadedImages[imgIndex].src; // Use preloaded image source
         }
 
         // Event listener for slider changes
         slider.addEventListener('input', updateImage);
 
         // Display the first image initially
-        imageElement.src = preloadedImages[0];
+        imageElement.src = preloadedImages[0].src;
     } else {
         console.error(`Image set for directory ${imageDir} not found.`);
     }

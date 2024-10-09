@@ -11,6 +11,7 @@ const preloadedImages = [];
 const imageElement = document.getElementById('displayed-image');
 const slider = document.getElementById('slider');
 
+
 // Preload all images
 imageFiles.forEach((filename, index) => {
     const img = new Image();
