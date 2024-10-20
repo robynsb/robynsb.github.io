@@ -7,8 +7,12 @@ const imageSets = {
 
     // Add more directories and their image sets here as needed
 };
+/*
+https://docs.google.com/forms/d/e/1FAIpQLSdLFJVOTlx8wOV7-jcO4231UwE1j8jbf9PlEY2PgeAo3Gifgg/viewform?usp=pp_url
+&entry.18427505=test
+*/
 
-const slidersData = [
+const tutorial = [
     {
         stimuliSrc: "../tutorialstimuli/Donut7.6m.png",
         inputName: "entry.996671842",
@@ -16,7 +20,7 @@ const slidersData = [
     },
     {
         stimuliSrc: "../tutorialstimuli/Dragon0.5m.png",
-        inputName: "entry.2114654476",
+        inputName: "entry.18427505",
         sliderType: "../dragonslider/"
     },
     {
@@ -28,7 +32,9 @@ const slidersData = [
         stimuliSrc: "../tutorialstimuli/Donut0.6m.png",
         inputName: "entry.2114654476",
         sliderType: "../donutslider/"
-    },
+    }
+]
+const testset = [
     {
         stimuliSrc: "../stimuli/donutNLC.png",
         inputName: "entry.1408098624",
@@ -66,29 +72,65 @@ const slidersData = [
     },
     {
         stimuliSrc: "../stimuli/donutbackgroundsliderNLC.png",
-        inputName: "BLANK",
+        inputName: "entry.723509235",
         sliderType: "../donutbackgroundslider/"
     },
     {
         stimuliSrc: "../stimuli/donutbackgroundsliderHPCI.png",
-        inputName: "BLANK",
+        inputName: "entry.957421701",
         sliderType: "../donutbackgroundslider/"
     },
     {
         stimuliSrc: "../stimuli/textureddragonsliderHPCI.png",
-        inputName: "BLANK",
+        inputName: "entry.1942043733",
         sliderType: "../textureddragonslider/"
     },
     {
         stimuliSrc: "../stimuli/textureddragonsliderNLC.png",
-        inputName: "BLANK",
+        inputName: "entry.1483999009",
         sliderType: "../textureddragonslider/"
     },
 ];
 
-function generateSliders(sliders) {
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+const shuffledTest = shuffle(testset);
+
+const slidersData = tutorial.concat(shuffledTest);
+
+let currentSliderIndex = 0;
+const sliderValues = {};
+
+function showGrayScreen(callback) {
+    const grayScreen = document.createElement('div');
+    grayScreen.className = 'grayScreen'
+
+    const message = document.createElement('p');
+    message.textContent = 'Please enjoy this gray background before continuing.';
+    message.style.color = 'white';
+    message.style.fontSize = '2rem';
+
+    grayScreen.appendChild(message);
+    document.body.appendChild(grayScreen);
+
+    setTimeout(() => {
+        callback();
+        document.body.removeChild(grayScreen);
+    }, 3000);
+}
+
+function showSlider(index) {
     const container = document.getElementById('sliders-container');
-    sliders.forEach(slider => {
+    container.innerHTML = '';
+
+    if (index < slidersData.length) {
+        const slider = slidersData[index];
         const sliderContainer = document.createElement('div');
         sliderContainer.className = 'slider-container';
         sliderContainer.setAttribute('data-image-dir', slider.sliderType);
@@ -102,9 +144,51 @@ function generateSliders(sliders) {
         `;
 
         container.appendChild(sliderContainer);
+
+        // Add counter
+        const counter = document.createElement('p');
+        counter.textContent = `${index + 1}/${slidersData.length}`;
+        container.appendChild(counter);
+
+        // Add Next button
+        const nextButton = document.createElement('button');
+        nextButton.className = 'next-button'
+        nextButton.type = 'button';
+        nextButton.textContent = 'Next';
+        nextButton.onclick = () => {
+            const sliderInput = document.querySelector('.slider');
+            sliderValues[slider.inputName] = sliderInput.value;
+            if (index != slidersData.length-1) {
+                showGrayScreen(() => {
+                    currentSliderIndex++;
+                    showSlider(currentSliderIndex);
+                });
+            } else {
+                currentSliderIndex++;
+                showSlider(currentSliderIndex);
+            }
+            
+        };
+        container.appendChild(nextButton);
+    } else {
+        // Add Submit button
+        // container.appendChild = '<p>You finished the experiment!</p>';
+        const congrats = document.createElement('p');
+        congrats.textContent = 'You finished the experiment!';
+        container.appendChild(congrats);
+        const submitButton = document.createElement('input');
+        submitButton.type = 'submit';
+        submitButton.value = 'Submit';
+        container.appendChild(submitButton);
+    }
+    document.querySelectorAll('.slider-container').forEach((sliderContainer) => {
+        setupSlider(sliderContainer);
     });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    showSlider(currentSliderIndex);
+});
 
 // Function to preload images
 function preloadImages(imageDir, imageSet) {
@@ -149,10 +233,24 @@ function setupSlider(sliderContainer) {
     }
 }
 
-// Set up all sliders on the page
 document.addEventListener('DOMContentLoaded', () => {
-    generateSliders(slidersData);
-    document.querySelectorAll('.slider-container').forEach((sliderContainer) => {
-        setupSlider(sliderContainer);
+    showSlider(currentSliderIndex);
+
+    // Add hidden inputs to the form
+    const form = document.querySelector('form');
+    slidersData.forEach(slider => {
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = slider.inputName;
+        hiddenInput.id = slider.inputName;
+        form.appendChild(hiddenInput);
+    });
+
+    // Update hidden inputs before form submission
+    form.addEventListener('submit', () => {
+        Object.keys(sliderValues).forEach(key => {
+            const hiddenInput = document.getElementById(key);
+            hiddenInput.value = sliderValues[key];
+        });
     });
 });

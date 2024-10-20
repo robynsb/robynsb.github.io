@@ -73,3 +73,34 @@ img {
     border: 2px solid #ccc;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
 }
+
+button.next-button {
+    background-color: #007bff; /* Blue background */
+    color: white;              /* White text */
+    padding: 1em 2em;          /* Padding using em for adjustability */
+    font-size: 1.2rem;         /* Use rem for font size (relative to root) */
+    border: none;              /* Remove borders */
+    border-radius: 0.5rem;     /* Rounded corners using rem */
+    cursor: pointer;           /* Pointer cursor on hover */
+    margin-top: 1.5rem;        /* Top margin for spacing */
+    display: inline-block;     /* Keep the button's natural width */
+    margin-bottom: 5rem;
+}
+
+/* Hover state styling for the Next button */
+button.next-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.grayScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
