@@ -144,11 +144,9 @@ function showSlider(index) {
         `;
 
         container.appendChild(sliderContainer);
-
-        // Add counter
-        const counter = document.createElement('p');
-        counter.textContent = `${index + 1}/${slidersData.length}`;
-        container.appendChild(counter);
+        // Add Next button and counter container
+        const buttonCounterContainer = document.createElement('div');
+        buttonCounterContainer.className = 'button-counter-container';
 
         // Add Next button
         const nextButton = document.createElement('button');
@@ -169,7 +167,15 @@ function showSlider(index) {
             }
             
         };
-        container.appendChild(nextButton);
+        buttonCounterContainer.appendChild(nextButton);
+
+        // Add counter
+        const counter = document.createElement('p');
+        counter.className = 'counter';
+        counter.textContent = `${index + 1}/${slidersData.length}`;
+        buttonCounterContainer.appendChild(counter);
+
+        container.appendChild(buttonCounterContainer);
     } else {
         // Add Submit button
         // container.appendChild = '<p>You finished the experiment!</p>';
