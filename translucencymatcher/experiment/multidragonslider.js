@@ -8,6 +8,104 @@ const imageSets = {
     // Add more directories and their image sets here as needed
 };
 
+const slidersData = [
+    {
+        stimuliSrc: "../tutorialstimuli/Donut7.6m.png",
+        inputName: "entry.996671842",
+        sliderType: "../donutslider/"
+    },
+    {
+        stimuliSrc: "../tutorialstimuli/Dragon0.5m.png",
+        inputName: "entry.2114654476",
+        sliderType: "../dragonslider/"
+    },
+    {
+        stimuliSrc: "../tutorialstimuli/Donut0m.png",
+        inputName: "entry.1259753964",
+        sliderType: "../donutslider/"
+    },
+    {
+        stimuliSrc: "../tutorialstimuli/Donut0.6m.png",
+        inputName: "entry.2114654476",
+        sliderType: "../donutslider/"
+    },
+    {
+        stimuliSrc: "../stimuli/donutNLC.png",
+        inputName: "entry.1408098624",
+        sliderType: "../donutslider/"
+    },
+    {
+        stimuliSrc: "../stimuli/DragonNLC.png",
+        inputName: "entry.495196325",
+        sliderType: "../dragonslider/"
+    },
+    {
+        stimuliSrc: "../tutorialstimuli/Dragon3m.png",
+        inputName: "entry.1985680802",
+        sliderType: "../dragonslider/"
+    },
+    {
+        stimuliSrc: "../stimuli/DonutHPCI.png",
+        inputName: "entry.2054871942",
+        sliderType: "../donutslider/"
+    },
+    {
+        stimuliSrc: "../stimuli/DragonHPCI.png",
+        inputName: "entry.989698345",
+        sliderType: "../dragonslider/"
+    },
+    {
+        stimuliSrc: "../stimuli/DonutTextured.png",
+        inputName: "entry.1022346042",
+        sliderType: "../donutbackgroundslider/"
+    },
+    {
+        stimuliSrc: "../stimuli/DragonTextured.png",
+        inputName: "entry.575159546",
+        sliderType: "../textureddragonslider/"
+    },
+    {
+        stimuliSrc: "../stimuli/donutbackgroundsliderNLC.png",
+        inputName: "BLANK",
+        sliderType: "../donutbackgroundslider/"
+    },
+    {
+        stimuliSrc: "../stimuli/donutbackgroundsliderHPCI.png",
+        inputName: "BLANK",
+        sliderType: "../donutbackgroundslider/"
+    },
+    {
+        stimuliSrc: "../stimuli/textureddragonsliderHPCI.png",
+        inputName: "BLANK",
+        sliderType: "../textureddragonslider/"
+    },
+    {
+        stimuliSrc: "../stimuli/textureddragonsliderNLC.png",
+        inputName: "BLANK",
+        sliderType: "../textureddragonslider/"
+    },
+];
+
+function generateSliders(sliders) {
+    const container = document.getElementById('sliders-container');
+    sliders.forEach(slider => {
+        const sliderContainer = document.createElement('div');
+        sliderContainer.className = 'slider-container';
+        sliderContainer.setAttribute('data-image-dir', slider.sliderType);
+
+        sliderContainer.innerHTML = `
+            <div class="image-container">
+                <img src="${slider.stimuliSrc}" alt="Stimulus 1">
+                <img class="testimg" src="" alt="Slider Image">
+            </div>
+            <input type="range" name="${slider.inputName}" class="slider" min="0" max="0" step="1">
+        `;
+
+        container.appendChild(sliderContainer);
+    });
+}
+
+
 // Function to preload images
 function preloadImages(imageDir, imageSet) {
     const preloadedImages = [];
@@ -52,6 +150,9 @@ function setupSlider(sliderContainer) {
 }
 
 // Set up all sliders on the page
-document.querySelectorAll('.slider-container').forEach((sliderContainer) => {
-    setupSlider(sliderContainer);
+document.addEventListener('DOMContentLoaded', () => {
+    generateSliders(slidersData);
+    document.querySelectorAll('.slider-container').forEach((sliderContainer) => {
+        setupSlider(sliderContainer);
+    });
 });
