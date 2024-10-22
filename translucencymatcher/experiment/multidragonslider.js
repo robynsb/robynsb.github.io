@@ -148,6 +148,12 @@ function showSlider(index) {
         const buttonCounterContainer = document.createElement('div');
         buttonCounterContainer.className = 'button-counter-container';
 
+        // Empty p for flexbox
+        const emptyp = document.createElement('p');
+        emptyp.className = 'counter';
+        emptyp.textContent = '';
+        buttonCounterContainer.appendChild(emptyp);
+
         // Add Next button
         const nextButton = document.createElement('button');
         nextButton.className = 'next-button'

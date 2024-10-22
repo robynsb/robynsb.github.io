@@ -84,8 +84,9 @@ button.next-button {
     cursor: pointer;           /* Pointer cursor on hover */
     margin-top: 1.5rem;        /* Top margin for spacing */
     display: inline-block;     /* Keep the button's natural width */
-    margin-bottom: 5rem;
-    margin: 0 auto;    
+    margin-bottom: 2rem;       /* Bottom margin for spacing */
+    text-align: center;        /* Center the text inside the button */
+    margin-left: auto;
 }
 
 /* Hover state styling for the Next button */
@@ -106,20 +107,21 @@ button.next-button:hover {
     z-index: 1000;
 }
 
+/* Styles for the button and counter container */
 .button-counter-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Center the button */
     align-items: center;
     width: 100%;
     margin-top: 1.5rem;
     margin-bottom: 5rem;
 }
 
+
 /* Styles for the counter */
 .counter {
     margin: 0;
     font-size: 1.2rem;
     color: #333;
-    position: absolute;
-    right: 0;
+    margin-left: auto; /* Align the counter to the right */
 }
